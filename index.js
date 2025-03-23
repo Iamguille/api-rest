@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { create, ev } = require('@wppconnect-team/wppconnect');
+const { create } = require('@wppconnect-team/wppconnect');
 const path = require('path');
 const os = require('os');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Usar el puerto proporcionado por Render
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public'))); // Para servir archivos estáticos como el QR
@@ -50,7 +50,19 @@ function startWhatsApp() {
         startWhatsApp(); // Reintentar la conexión automáticamente
       }
     },
-    puppeteerOptions: { headless: true }, // Ejecutar en modo sin interfaz gráfica
+    puppeteerOptions: {
+      headless: true, // Ejecutar en modo sin interfaz gráfica
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process', // (opcional) Útil para entornos con recursos limitados
+        '--disable-gpu'
+      ],
+    },
   })
   .then((wppClient) => {
     client = wppClient;
