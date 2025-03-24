@@ -1,22 +1,21 @@
 {
-  "name": "api",
+  "name": "whatsapp-baileys-api-multi",
   "version": "1.0.0",
+  "description": "API REST de WhatsApp Multisesión usando Baileys",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "^6.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "qrcode-terminal": "^0.12.0"
+  },
   "devDependencies": {
-    "@wppconnect-team/wppconnect": "^1.35.2",
-    "body-parser": "^1.20.3",
-    "express": "^4.21.2"
-  },
-  "peerDependencies": {
-    "@wppconnect-team/wppconnect": "^1.35.2",
-    "body-parser": "^1.20.3",
-    "express": "^4.21.2"
+    "nodemon": "^3.0.1"
   }
 }
